@@ -4,7 +4,7 @@
       <div class="line" v-for="item in list" :key="item.feedbackId">
         <div :class="[item.replyType == 1 ? 'left' : 'right']" class="clearfix">
           <div :class="[item.replyType == 1 ? 'pull-left' : 'pull-right']">
-            <img :src="item.avatar ? decodeURIComponent(item.avatar) : adminDefault" class="reply-head" style="display: block;">
+            <img :src="item.avatar ? (decodeURIComponent(item.avatar) == '../../images/user-default1.png' ? userDefault : decodeURIComponent(item.avatar)) : adminDefault" class="reply-head" style="display: block;">
           </div>
             <span class="msg" :class="[item.replyType == 1 ? 'pull-left' : 'pull-right']">
               <span v-text="item.msg"></span>
@@ -22,6 +22,7 @@
 <script type="text/ecmascript-6">
   import {mapActions} from 'vuex';
   import adminDefault from '../../static/img/admin-default.jpg';
+  import userDefault from '../../static/img/user-default1.png'
 
   export default{
     data: function(){
@@ -29,7 +30,8 @@
         clientHeight: 0,
         list: [],
         msg: '',
-        adminDefault:adminDefault
+        adminDefault:adminDefault,
+        userDefault: userDefault
       }
     },
     created: function(){
